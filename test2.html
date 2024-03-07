@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Include the CesiumJS JavaScript and CSS files -->
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.79.1/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.79.1/Build/Cesium/Widgets/widgets.css"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzNWY2NGI5ZS0zYThhLTQ5M2MtYmYxYy01MzU3ZWUwYzI3YzIiLCJpZCI6MTk1Njg4LCJpYXQiOjE3MDc5ODc1NjR9.HBVuVn5GEjrD-dsY3UO4cuthD9qy8uk9jeFS9I73ax0';
+            const viewer = new Cesium.Viewer("cesiumContainer");
+
+            const htmlOverlay = document.getElementById("htmlOverlay");
+            const scratch = new Cesium.Cartesian2();
+            viewer.scene.preRender.addEventListener(function () {
+                const position = Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883);
+                const canvasPosition = viewer.scene.cartesianToCanvasCoordinates(
+                    position,
+                    scratch
+                );
+                if (Cesium.defined(canvasPosition)) {
+                    htmlOverlay.style.top = `${canvasPosition.y}px`;
+                    htmlOverlay.style.left = `${canvasPosition.x}px`;
+                }
+            });
+
+        })
+    </script>
+</head>
+
+<body>
+    <div id="cesiumContainer"></div>
+    <img src="logo.gif" id="htmlOverlay" style="position: absolute">
+</body>
+
+</html>

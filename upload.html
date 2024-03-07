@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!-- Include the CesiumJS JavaScript and CSS files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.79.1/Build/Cesium/Cesium.js"></script>
+    <script src="js/measure.js"></script>
+    <script src="js/viewer.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.79.1/Build/Cesium/Widgets/widgets.css"
+        rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="buttonContainer">
+        <button id="measureButton">거리 측정</button>
+        <button id="closeButton">지우기</button>
+    </div>
+    <div id="cesiumContainer" class="fullSize"></div>
+    <div id="result"
+        style="position: absolute; top: 10px; left: 10px; background-color: rgba(230, 225, 225, 0.8); padding: 5px; border-radius: 5px;">
+    </div>
+    <div id="toolbar">
+        <table>
+            <tbody>
+                <tr>
+                    <td>확장</td>
+                    <td>
+                        <input type="range" min="1" max="5" step="0.01"
+                            data-bind="value: exaggeration, valueUpdate: 'input'">
+                        <input type="text" size="5" data-bind="value: exaggeration">
+                    </td>
+                </tr>
+                <tr>
+                    <td>상대 높이</td>
+                    <td>
+                        <input type="range" min="-1000" max="9000" step="1"
+                            data-bind="value: relativeHeight, valueUpdate: 'input'">
+                        <input type="text" size="5" data-bind="value: relativeHeight">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
